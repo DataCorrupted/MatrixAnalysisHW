@@ -1,0 +1,78 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 1}
+\author{Peter Rong \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+	\item[Problem 1](4/10, \textit{A little group theory drill}):	
+	Let $G$ be a group with group operation $*$ and identity element $e$.
+	Suppose that $\forall g \in G$ we have that $g * g = e$. Show that $G$ is an abelian group.
+	\begin{proof}
+
+		$$ \forall g_1, g_2 \in G $$
+		$$ e = (g_1 * g_2) * (g_1 * g_2) $$
+		Let's multiply $g_2 * g_1$ to the left of both sizes.
+		$$ g_2 * g_1 
+			= g_2 * g_1 * (g_1 * g_2) * (g_1 * g_2)
+			= (g_2 * g_1 * g_1 * g_2) * (g_1 * g_2)
+			= g_1 * g_2
+		$$
+		Thus G is an Abelian group.
+
+	\end{proof}
+
+	\item[Problem 2](4/10, \textit{Behavior of identity element and inverses under group homomorphisms}):
+	Let $G$, $H$ be groups with group operations $*_G$, $*_H$ and identity
+	elements $e_G$, $e_H$ respectively. Let $\phi:G\to H$ be a group homomorphism. Show that $\phi(e_G)=e_H$ and that $\forall g\in G$ we have that $\phi(g^{-1})=(\phi(g))^{-1}$.
+	\begin{proof}
+
+		$$ \phi(e_G) = \phi(e_G*e_G)
+			= \phi(e_G) * \phi(e_G)
+			= e_H * e_H
+			= e_H
+		$$
+		$ \forall g \in G $, we have $ g^{-1} * g = e_G$, then:
+			$$ \phi(e_G) = \phi(g*g^{-1})
+				=	\phi(g) * \phi(g^{-1})
+				= e_H
+			$$
+		Thus:
+			$$ \phi(g^{-1}) = (\phi(g))^{-1} $$
+
+	\end{proof}
+
+	\item[Problem 3](2/10, \textit{Group isomorphism is a transitive relation}):
+	Let $G$, $H$, $K$ be groups such that $G$ is isomorphic to $H$, and $H$ is isomorphic to $K$. Show that $G$ is isomorphic to $K$.
+	\begin{proof}
+
+		Since $G$ is isomorphic to $H$, we can define a function:
+			$$ \phi: G \mapsto H $$
+		where $ \forall g_1, g_2, \phi(g_1 *_G g_2) = \phi(g_1) *_H \phi(g_2)$
+		Likewise we can define:
+			$$ \psi: H \mapsto K $$
+		where $ \forall h_1, h_2, \psi(h_1 *_H h_2) = \psi(h_1) *_K \phi(h_2)$
+		Now we are going to show that function $\phi\psi$ makes $G$ isomorphic to $K$
+		$$ [\psi\phi](g_1 *_G g_2)
+			= \psi(\phi(g_1) *_H \phi(g_2))
+			= [\psi\phi](g_1) *_K [\psi\phi](g_2)
+		$$
+		Then this is proved.
+
+	\end{proof}
+
+\end{description}
+
+\end{document}
+\grid

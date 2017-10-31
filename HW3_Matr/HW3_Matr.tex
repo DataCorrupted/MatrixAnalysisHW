@@ -1,0 +1,114 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 3}
+\author{Peter Rong \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+
+
+	\item[Problem 1] (3/10, \textit{Every subspace has a complement}):
+	Let $V$ be a vector space and $S$ a subspace of $V$. Show that $S$ has a complement in $V$, i.e., that there exists a subspace $T$ of $V$, such that $V=S\oplus T$.
+	\begin{proof}
+		Suppose $V$ has a basis $B$, $S$ has a basis $B_1$, then let's define a new basis $B_2 = B - B_1$ and then $T = span(B_2)$
+		\par Proof of $S \cap T = {0}$: 
+			\par Since $B_2 = B - B_1$, then $B_1 \cap B_2 = \varnothing$, thus $S \cap T = \{0\}$ must be true.
+		\par Proof of $S \oplus T = V$: 
+			Since $V$ have a basis $B = B_1 \cup B_2$, 
+			$$V = span(B) = span(B_1) + span(B_2) = S \cup T$$
+			(The reason for this relation may refer to Problem 2)
+	\end{proof}
+
+
+	\item[Problem 2] (4/10, \textit{Behavior of basis over direct sums}):
+	Let $V$ be a vector space.
+	\begin{enumerate}
+		\item Let $B$ be a basis for $V$. Suppose that there exist subsets $B_1, B_2$ of $B$, such that $B=B_1\cup B_2$ and $B_1\cap B_2=\emptyset.$ Then show that $V=span(B_1)\oplus span(B_2).$
+		\item Let $V=S\oplus T$, and let $B_1$ be a basis for $S$ and $B_2$ be a basis for $T$. Show that $B_1\cap B_2=\emptyset$ and that $B_1\cup B_2$ is a basis for $V$.
+	\end{enumerate}
+	\begin{proof}
+		Let's proof 1 and 2 once at a time.
+		\subsubsection*{1.}
+			Let's proof $span(B_1) \cap span(B_2) = \{0\}$ first.
+			Assume $\exists v \in span(B_1) \cap span(B_2)$, we have 
+			\begin{equation}\label{Eq1}
+			 v = \sum_i b_{1_i} s_i = \sum_i b_{2_i} t_i 
+			\end{equation}
+			where $B_1 = \{b_{1_i}\}$, $B_2 = \{b_{2_i}\}$ are vectors and $s_i$, $t_i$ are coefficients.
+			then $\sum_i b_{1_i} s_i - \sum_i b_{2_i} t_i = 0$
+			Since $b_{1_i}, b_{2_i} \in B_1 \cap B_2 = B$, this violates the independence of basis.
+			So, $span(B_1) \cap span(B_2) = \{0\}$
+			\\
+			Then let's proof $V = span(B_1) \cup span(B_2)$
+			$$ \forall v \in V $$
+			$$ v = \sum_i a_i b_i = \sum_i^k a_i b_i + \sum_{i=k+1}^{|B|} a_i b_i$$
+			Since we can sort $b_i$ any way we want, it's safe to say that $B_1=\{b_i | i \leqslant k \}$, $B_2 = \{b_i | k < i < |B|\}$.
+			Then we can define $b_1 = \sum_i^k a_i b_i \in span(B_1)$, $b_2 = \sum_{i=k+1}^{|B|} a_i b_i \in span(B_2)$
+			$$ v = b_1 + b_2 $$
+			Thus $V \subset span(B_1) \cup span(B_2)$. \\
+			In another way, $ \forall v \in span(B_1) \cup span(B_2)$, we can always expand it in the way \ref{Eq1} did. So $span(B_1) \cup span(B_2) \subset V$
+			In conclusion $V = span(B_1) \cup span(B_2)$
+		\subsubsection*{2.}
+			Since $V=S\oplus T$, $S \cap T = {0}$, combined with the fact that $0 \notin B_1 \cup B_2$, $B_1 \cap B_2 = \emptyset$(Check)\\
+			$$\forall v \in V$$
+			$$v = \sum_{s_i \in B_1}b_is_i + \sum_{t_i \in B_2} c_it_i$$
+			Thus $B_1 \cap B_2$ is a basis for $V$.
+
+
+
+	\end{proof}
+
+
+	\item[Problem 3](3/10, \textit{Characterization of a basis}):
+	Prove Theorem 1.7 in Roman by proving that $1)\Rightarrow 4)\Rightarrow 3)\Rightarrow 2)\Rightarrow 1)$.
+	\begin{proof}
+		We will do the proof step by step.
+		\subsection*{1) $\Rightarrow$ 4)}
+			Suppose $T$ is not max and there $\exists v \notin T$, making $T \cup \{v\}$ larger. \\
+			Since $span(T) = V$, then $v$ can be expressed in the following form:
+			$$ v = \sum_i c_i t_i$$
+			where $c_i \in F$ and $t_i \in T$
+			This contradicts with the requirement that $T \cup \{v\}$ should be l.i.
+			Thus $T$ should be the max.
+		\subsection*{4) $\Rightarrow$ 3)}
+			Suppose $T$ is not the min spanning set, $\exists t \in T$, \\
+			s.t. $span(T-\{t\}) = V$ \\
+			Then we have a combination for $t$:
+			$$ t = \sum_i c_i t_i$$
+			where $c_i \in F$ and $t_i \in T-\{t\}$
+			That is to say, there is one element in $T$ that is not independent, which contradicts with the assumption that $T$ is the max l.i.
+		\subsection*{3) $\Rightarrow$ 2)}
+			Suppose there $\exists v = \sum_i a_is_i = \sum_i b_it_i$,
+			where $s_i, t_i \in T$ 
+			\par We can always sort $s_i$ and $t_i$ so that $\exists k$ where $$s_i = t_i$$s.t.$$ i\leqslant k$$
+			Now we have: 
+			$$ \sum_{i=1}^k(a_i-b_i)s_i + \sum_{k+1}a_i s_i - \sum_{k+1}b_is_i = 0	$$
+			Since $T$ is the min spanning set, all coefficients should be 0 to aviod dependence.
+			Thus $a_i = b_i$ when $i<k+1$ other $a_i = b_i = 0$, which means these two combinations are the same after all.
+		\subsection*{2) $\Rightarrow$ 1)}
+			According to the definition, $\forall v \in V$, $\exists v_i, r_i$, $v = \sum_i r_iv_i$.
+			\par Then $V = span(S)$
+			\par Next we will proof l.i.
+			\par Suppose $S$ is not l.i., that is $\exists s_i \in S \exists s = \sum_i c_is_i$
+			\par Such $s\in V$ must hold, then for this particular $s$, there are two ways of expressing it:
+				$$s = 1*s = \sum_i c_is_i$$
+			This is a contradicton. 
+			Then $S$ must be l.i.
+	\end{proof}
+
+	
+\end{description}
+
+\end{document}
+\grid

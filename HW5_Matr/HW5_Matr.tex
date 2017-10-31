@@ -1,0 +1,141 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 5}
+\author{Peter Rong \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+
+\item[Problem 1]:\\
+Let $\sigma: U \rightarrow V, \tau: V\rightarrow W$ be linear transformations of finite dimensional vector spaces. Let $B$ be an ordered basis for $U$ and $D$ an ordered basis for $W$. Prove that the representation of $\tau\circ\sigma : U\rightarrow W$ with respect to $B, D$ is given by matrix multiplication. \\
+\textit{Note: Prove this directly by computing this representation; the one line proof given in Roman is of course correct (it uses the commutativity of the diagrams) but it will not be accepted as an answer. }
+\begin{proof}
+	Let's say that $V$ have basis $C$
+	$$\forall u \in U$$
+	$$
+		\tau\circ\sigma(u) = \tau(\sigma(u)) = \tau([\sigma]_{UV}[u]_U)=[\tau]_{VW}[\sigma]_{UV}[u]_U
+	$$
+	Considering the fact that:
+	$$
+		[\sigma]_{UV} = [[\sigma(b_1)]_C \cdots [\sigma(b_i)]_C \cdots]
+	$$ $$
+		[\tau]_{VW} = [[\tau(c_1)]_D \cdots [\tau(c_i)]_D \cdots]
+	$$ 
+	We have $$\tau\circ\sigma = [[\sigma(b_1)]_C \cdots [\sigma(b_i)]_C \cdots][[\tau(c_1)]_D \cdots [\tau(c_i)]_D \cdots]$$
+	Then we can say that the claim is true.
+\end{proof}
+
+
+\item[Problem 2]:\\
+Consider the map $\mu : \mathcal{L}(V, W)\rightarrow \mathcal{F}^{m\times n}$ defined in class (and also in Theorem 2.15 in Roman). Describe explicitly the inverse mapping $\lambda : \mathcal{F}^{m\times n}\rightarrow \mathcal{L}(V, W)$ and explicitly prove that $\lambda\circ\mu(\tau) = \tau, \forall\tau\in\mathcal{L}(V, W)$, as well as that $\mu\circ\lambda(A) = A, \forall A\in \mathcal{F}^{m\times n}$.
+\begin{proof}
+	Suppose $A \in \mathcal{F}^{m\times n}$, $V$ have basis $B = \{b_i\}$, $W$ have basis $C$, we have
+	$$\lambda(A) = \tau_A$$
+	s.t.
+	$$\forall i, \tau_A(b_i) = Ab_i \in \mathcal{F}^m$$
+	Then $\forall v = \sum_i c_ib_i \in V$, $\tau_A = \tau_A(\sum_i c_ib_i) = A\sum_i c_ib_i \in \mathcal{F}^m$ \\
+	$$\lambda \circ \mu(\tau) = \lambda([\tau]_{VW}) = \lambda([[\tau(b_1)]_C \cdots [\tau(b_i)]_C \cdots]) = \tau$$
+	$$\mu\circ\lambda(A) = \mu(\tau_A) = [[\tau_A(b_1)]_C \cdots [\tau_A(b_i)]_C \cdots] = A$$
+
+\end{proof}
+
+
+\item[Problem 3]:\\
+i) Let $V = S\oplus T$. Show that $\rho_{S,T} + \rho_{T,S} = id_\mathcal{L(V, V)}$. This decomposition of the identity map is called a resolution of the identity.\\
+ii) Show that $im(\rho_{S,T}) = S$ and $ker(\rho_{S,T}) = T$.\\
+iii) Show that for an element $v\in V$ we have that $v\in im(\rho_{S,T})\Leftrightarrow\rho_{S,T}(v) = v$. 
+\begin{proof}
+
+	\textbf{i)}
+		$$\forall v \in V$$
+		$$\exists s\in S, t \in T$$
+		s.t.
+		$$ v = s + t $$
+		$$(\rho_{S,T} + \rho_{T,S})(v) = \rho_{S,T}(s+t) + \rho_{T,S}(s+t) = s+t = v$$
+		Thus we have $\rho_{S,T} + \rho_{T,S} = id_\mathcal{L(V, V)}$
+	\\ \textbf{ii)}
+		$$\forall v = s + t \notin T, t \in T$$
+		$\rho_{S,T}(t) = 0 $ $\Rightarrow$	$Ker(\rho_{S, T}) \subset T$
+		$\rho_{S,T}(v) = s $ $\Rightarrow$  $T \subset Ker(\rho_{S, T})$ \\
+		Thus $T = Ker(\rho_{S, T})$ \\
+		$$\forall v = s + t\in V$$
+		$\rho_{S,T}(v) = s \in S$ $\Rightarrow$	 $S \subset Im(\rho_{S, T})$ \\
+		Since $\forall s \in S$ $\Rightarrow$ $Im(\rho_{S, T}) \subset S$ \\
+		Conclude: $Im(\rho_{S, T}) = S$
+	\\ \textbf{iii)}
+		\textbf{$\Leftarrow$}	
+			Assume $v = s + t$
+			$$ \rho_{S,T}(v) = s = v$$
+			That's to say that $t = 0$ and $s = v$
+			Then $v \in S = Im(\rho_{S,T})$
+		\textbf{$\Rightarrow$}
+			$$ v\in im(\rho_{S,T}) = S $$
+			That's to say: $v = s + t$ and $t = 0$.
+			Thus: $$ \rho_{S,T}(v) = v $$
+
+\end{proof}
+
+
+\item[Problem 4]:\\
+Consider the setting of Example 2.5 in Roman. Verify all claims in this example, i.e., prove that\\
+i) $\rho_{D,X}\rho_{D,Y} = \rho_{D,Y} \neq \rho_{D,X} = \rho_{D,Y} \rho_{D,X}$\\   
+ii) $\rho_{Y,X}\rho_{X,D} = 0$\\
+iii) $\rho_{X,D}\rho_{Y,X}$ is not a projection. 
+\begin{proof}
+	Suppose we have a vector $(x, y)$ \\
+	\textbf{i)}
+		$$\rho_{D, X}\rho_{D, Y}(x, y) = \rho_{D, X}(x, x) = (x, x) = \rho_{D, Y}(x, y)$$
+		$$\rho_{D, Y}\rho_{D, X}(x, y) = \rho_{D, Y}(y, y) = (y, y) = \rho_{D, X}(x, y)$$
+		$\rho_{D,X}\rho_{D,Y} = \rho_{D,Y} \neq \rho_{D,X} = \rho_{D,Y} \rho_{D,X}$ Check.\\
+	\textbf{ii)}\\
+		$$\rho_{Y,X}\rho_{X,D}(x, y) = \rho_{Y, X}(-x, 0) = 0$$
+	\textbf{iii)} \\
+		$$\rho_{X,D}\rho_{Y,X}(x, y) = \rho_{X, D}(0, y) = (-y, 0)$$
+		$$(\rho_{X,D}\rho_{Y,X})^2(x,y) = \rho_{X,D}\rho_{Y,X}(-y, 0) = (0, 0) \neq \rho_{X,D}\rho_{Y,X}(x, y)$$
+		The inequality proved that this is not a projection.
+\end{proof}
+
+
+\item[Problem 5]:\\
+Let $\rho, \sigma\in\mathcal{L}(V,V)$ be projections. Show that if $\rho, \sigma$ commute, i.e., that $\rho\sigma = \sigma\rho$, then $\rho\sigma$ is a projection. In that case, show that $im(\rho\sigma) = im(\rho)\cap im(\sigma)$ and $ker(\rho\sigma) = ker(\rho) + ker(\sigma)$.
+\begin{proof}
+	$$(\rho\sigma)^2 = \rho\sigma\rho\sigma = \rho\rho\sigma\sigma = \rho^2\sigma^2 = \rho\sigma$$
+	(Use projection's properity $\rho^2 = \rho$ for more than one times.)
+	Thus we can conclude that $\rho\sigma$ is also a projection.\\
+	$\forall v \in Ker(\rho), w \in Ker(\sigma)$, we have $v+w \in  Ker(\rho) + \in Ker(\sigma)$. Now that we have:
+	$$\rho\sigma(v+w) = \rho(v) = 0$$
+	Thus: $Ker(\rho) + Ker(\sigma) \subset Ker(\rho\sigma) $ \\
+	$$\forall v = \sigma(v) + v - \sigma(v)\in Ker(\rho\sigma)$$ 
+	Since we have: \\
+	$$\sigma(v - \sigma(v)) = \sigma(v) - \sigma^2(v)0 \Rightarrow v-\sigma(v) \in Ker(\sigma)$$ 
+	$$\rho(\sigma(v)) = 0 \Rightarrow \sigma(v) \in Ker(\rho)$$ 
+	Thus: $Ker(\rho) + Ker(\sigma) \supset Ker(\rho\sigma) $ \\
+	We can conclude that: $Ker(\rho) + Ker(\sigma) = Ker(\rho\sigma) $ \\
+	$\forall a \in V$
+	$\sigma(a) = s \in Im(\sigma)$, we have $\exists x \in Ker(\rho), y \in Im(\rho)$, s.t. $s = x + y$\\
+	$\rho(s) = y \in Im(\rho)$, thus we have:\\
+	$\sigma\rho(a) = y \in Im(\rho)$ and $s = x + y \in Im(\sigma)$
+	$$ \sigma\rho(a) = y \in im(\rho)\cap im(\sigma)$$
+	Thus: $im(\rho\sigma) \subset im(\rho)\cap im(\sigma)$ \\
+	$\forall v \in im(\rho)\cap im(\sigma)$, we have
+	$$\rho(v) = \sigma(v) = v$$
+	$$\sigma\rho(v) = \sigma(\rho(v)) = v$$
+	Thus: $im(\rho\sigma) \supset im(\rho)\cap im(\sigma)$ \\
+	We can conclude that: $im(\rho\sigma) = im(\rho)\cap im(\sigma)$ \\
+
+
+\end{proof}
+
+\end{description}
+\end{document}

@@ -1,0 +1,73 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 2}
+\author{Peter Rong \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+	\item[Problem 1](4/10, \textit{If G is an abelian group, then End(G) is a ring}):{
+    Let $G$ be an abelian group with group operation *. For $\phi, \psi \in End(G)$, consider the definition of $\phi + \psi $ and $\phi \psi$ that we gave in the class. Verify that $End(G)$ is a ring under these two operations, i.e., check that all the axioms of the ring structure are true. For example, verify that for $\phi, \psi, \chi \in End(G)$, we have that $\phi (\psi + \chi) = \phi \psi + \phi \chi$.}
+	\begin{proof}
+		$$ \forall g \in G$$
+		\subsection*{Abelian under $+$}
+			$$(\psi+\phi)(g) 
+				= \psi(g) * \phi(g)
+				= \phi(g) * \psi(g)
+				= (\phi+\psi)(g) 
+			$$
+		\subsection*{Monoid under $\times$}
+			$$ [(\psi\phi)\chi](g)
+				= \psi(\phi(\chi(g)))
+				= [\psi(\phi\chi)](g)
+			$$
+		\subsection*{$\times$ is distributive with respective to $+$}
+			$$ [\psi(\phi+\chi)](g)
+				= \psi(\phi(g)) * \psi(\chi(g))
+				= [\psi\phi + \psi\chi](g)
+			$$
+	\end{proof}
+
+	\item[Problem 2](3/10, \textit{Injectivity of ring homomorphisms on a field}):{
+    Let $V \neq 0$ be a vector space over a field $F$ and let $\sigma: F \to End(V)$ be its associated ring homomorphism. Show that if $0 != c \in F$, then $\sigma(c)$ can not be the zero element of $End(V)$. More generally, show that if $R!= 0$ is any ring and $\tau: F \to R$ is any ring homomorphism, then $\tau(c) = 0 \Rightarrow c = 0$.}
+
+	\begin{proof}
+	
+		$$ \forall v \in V $$
+		$$ [\theta(c)](v) = cv $$
+		Now that $ c \neq 0$, $cv \neq 0$ \\
+		To be more general, $ \forall r \in R$
+		When $$ [\tau(c)](r) = cr = 0 $$ 
+		Since $$ r \in R \neq 0 $$
+		Thus the only possibility is that $ c = 0 $
+
+
+	\end{proof}
+
+	\item[Problem 3](3/10, \textit{An adventure in ring theory}):{
+    Let $R$ be a commutative ring with additive identity 0 and multiplicative identity 1. Let r be a nilpotent element of $R$, i.e., there exists a positive integer $n$ such that $r^{n} = 0$. Show that the element $u := r + 1$ is a unit of $R$, i.e., show that there exists some element $p \in R$, such that $up = 1$. \emph{Terminology: the set of invertible elements of a ring is a group, known as the group of units of the ring. Thus the group of units of a field is the entire field except the zero element. }}
+	\begin{proof}
+
+		$$\forall n, \exists k, 2k+1>n$$
+		Since $$r^n = 0$$
+		$$r^{2k+1} = 0$$
+		$$1+r^{2k+1} = (r+1)(r^{2k}-r^{2k-1}......) = (r+1)\sum_i^{2k}(-1)^ir^{i} = 1$$
+		Since $$u = r+1$$
+		$$p = \sum_i^{2k}(-1)^ir^{i}$$
+		s.t.  $$2k+1 > n$$
+		(It won't matter if $k$ gets too large, they are 0 anyway.)
+
+	\end{proof}
+\end{description}
+\end{document}
+\grid

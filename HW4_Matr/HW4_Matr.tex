@@ -1,0 +1,100 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 4}
+\author{Peter Rong \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+	\item[Problem 1] (\textit{Theorem 2.1.1 in Roman}):\\
+	Prove that the set $\mathcal{L}(\mathcal{V},\mathcal{W})$ of all linear transformations from vector space $\mathcal{V}$ to a vector space $\mathcal{W}$ is itself a vector space.\\
+	\begin{proof}
+		To proof a vector space we have to proof the following two things.
+		\subsubsection*{Abelian Group over +}
+			$$\forall \tau_1, \tau_2 \in \mathcal{L}(\mathcal{V}, \mathcal{W}), \forall v \in \mathcal{V}$$
+			$$ \tau_1(v) = w_1, \tau_2(v) = w_2$$
+			$$ \tau_1(v) + \tau_2(v) = w_1 + w_2 \in \mathcal{W}$$
+			Thus we have: 
+			$$ \tau_1+\tau_2 \in \mathcal{L}(\mathcal{V}, \mathcal{W})$$
+			And since:
+			$$ \tau_1(v) + \tau_2(v) = w_1 + w_2 = w_2 + w_1 = \tau_2(v) + \tau_1(v) $$
+			$\mathcal{L}(\mathcal{V}, \mathcal{W})$ is an Abelian Group under operation +.
+		\subsubsection*{Ring Homomorphism over *}
+			$$\forall \tau \in \mathcal{L}(\mathcal{V}, \mathcal{W}), \forall c \in F, \forall v \in \mathcal{V}$$
+			$$c\tau(v) = cw \in \mathcal{W}$$
+			Thus: $$c\tau \in \mathcal{L}(\mathcal{V}, \mathcal{W})$$
+			$\exists$ a ring homomoriphism.
+		\par To conclude, such claim stands.
+	\end{proof}
+
+	\item[Problem 2] (\textit{Theorem 2.5 in Roman}):\\
+	Prove that a linear transformation $\tau \in \mathcal{L}(\mathcal{V},\mathcal{W})$ is an isomorphism if and only if there is a basis $\mathfrak{B}_\mathcal{V}$ for $\mathcal{V}$ for which $\tau\mathfrak{B}_\mathcal{V}$ is a basis for $\mathcal{W}$. Prove that in this case, $\tau$ maps any basis of $\mathcal{V}$ to a basis of $\mathcal{W}$.\\
+	\begin{proof}
+		For simplicity of discussion let's denote that $\mathcal{V}$ has basis $\mathcal{B_V} = \{v_1, v_2, ...\}$, $\mathcal{W}$ has basis $\mathcal{B_W} = \{w_1, w_2, ...\}$
+		\subsubsection*{From Basis to Isomorphism}
+			\par proof of surjective.
+				$$\forall w \in \mathcal{W}$$
+				$$\exists \{r_i\}, w = \sum_i{r_iw_i}$$
+				Since $$\tau\mathcal{V} = \mathcal{W}$$
+				$$\forall w_i, \exists v_i, \tau(v_i) = w_i$$
+				Thus 
+				$$\exists v = \sum_i{r_iv_i} \in \mathcal{V}$$
+				$$\tau(v) = \tau(\sum_i{r_iv_i}) = \sum_i{r_iw_i} = w$$
+				Such $\tau$ is surjective.
+			\par proof of injective.
+				Suppose $\tau$ is not injective. That is:
+				$$\exists s, t \in \mathcal{V}, \tau(s) = \tau(t)$$
+				$$\exists \{b_i\} \neq \{0\}, s = \sum_i{b_iv_i}$$
+				$$\exists \{c_j\} \neq \{0\}, t = \sum_j{c_jv_j}$$
+				Then:
+				$$ \tau(s) = \tau(t)$$
+				$$ \sum_i{b_i\tau(v_i)} = \sum_j{c_j\tau(v_j)}$$
+				$$ \sum_i{b_iw_i} = \sum_j{c_jw_j}$$
+				Since ${w_i}$ are basis(l.i.), this indicates that $\{b_i\} = \{c_j\} = \{0\}$, contradict.
+				Thus $\tau$ is injective.
+			\par
+				In conclusion, $\tau \in \mathcal{L}(\mathcal{V}, \mathcal{W})$ is isomorphism.
+		\subsubsection*{From Isomorphism to Basis}
+			We can always find the basis of $\mathcal{V}$ first. Suppose we have that now.
+			To proof that $\mathcal{B_W} = \tau\mathcal{B_V}$, we can show that:\\
+			$ \forall w \in \mathcal{W}, \exists$ a nuique set $\{r_i\}, w = \sum_i{r_i\tau(v_i)}$
+			\par Proof of existance of $\{r_i\}$. \\
+				Since $\tau$ is isomorphism, 
+				$$\exists v \in \mathcal{V}, \exists \{r_i\}$$
+				s.t. 
+				$$\tau(v) = w, v = \sum_i{r_iv_i}$$
+				Thus: 
+				$$ \tau(v) = \tau(\sum_i{r_iv_i}) = \sum_i{r_i\tau(v_i)} = w$$
+			\par Proof of uniqueness of $\{r_i\}$. \\
+				Since $\{v_i\}$ are basis of $\mathcal{V}$, then $\forall v \in \mathcal{V}, \{r_i\}$ is unique.
+				Now that $\tau$ is bijective, then $\forall w \in \mathcal{W}, \{r_i\}$ is unique too.
+	\end{proof}
+
+	\item[Problem 3] (\textit{Corollary 2.9 in Roman}):\\
+	Let $\tau \in \mathcal{L}(\mathcal{V},\mathcal{W})$ be a linear transformation from vector space $\mathcal{V}$ to vector space $\mathcal{W}$, where $\mathcal{V},\mathcal{W}$ are both finite dimensional vector spaces with $dim(\mathcal{V})=dim(\mathcal{W})$. Prove that $\tau$ is injective if and only if it is surjective.\\
+	\begin{proof}
+		For the simplicity of discussion, let's assume $dim(\mathcal{V}) = dim(\mathcal{W}) = n < \infty$
+		\subsubsection*{Proof of $\Rightarrow$}
+			Suppose $\tau$ is injective. Immediately we have $dim(ker(\tau)) = 0$. Then according to \emph{The Rank Plus Nullity Theroem}:
+			$$ dim(im(\tau)) = n = dim(\mathcal{W})$$
+			Combined with the fact that $im(\tau) \subset \mathcal{W}$, we can conclude that:
+			$$ im(\tau) = \mathcal{W}$$
+			So, $\tau$ is surjective.
+		\subsubsection*{Proof of $\Leftarrow$}
+			Suppose $\tau$ is surjective, still we immediately have $dim(im(\tau)) = n$. Then
+			$$dim(ker(\tau)) = 0$$
+			So, $\tau$ is injective.
+	\end{proof}
+\end{description}
+
+\end{document}

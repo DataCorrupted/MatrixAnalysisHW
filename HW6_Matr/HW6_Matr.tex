@@ -1,0 +1,162 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 6}
+\author{Rong Yuyang \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+
+	\item[Problem 1]     Let $A, B \in R^{n \times n}$ be square matrices. Show that: 
+	$max \{dim \mathcal{N}(A), dim \mathcal{N}(B)\} \leq dim \mathcal{N}(AB) \leq dim \mathcal{N}(A) + dim \mathcal{N}(B)$. 
+
+	\begin{proof}
+	For simplicity, denote $\mathcal{B}_d(M) = \dim \mathcal{B}(M)$, $\mathcal{N}_d(M) = \dim \mathcal{N}(M)$
+	We have: 
+	$$\forall M \in \mathbb{R}^{n \times n} \Rightarrow \mathcal{N}_d(M) + \mathcal{B}_d(M) = n$$
+	and:
+	$$\mathcal{B}_d(A) + \mathcal{B}_d(B) - n
+	\leq \mathcal{B}_d(AB)
+	\leq \min\{\mathcal{B}_d(A), \mathcal{B}_d(b)\}
+	$$ 
+	Now substitude $\mathcal{B}_d(M)$ with $n - \mathcal{N}_d(M)$
+	$$ 	\dim {B}(A) + \mathcal{B}_d(B) - n
+		\leq \mathcal{B}_d(AB)
+		\leq \min\{\mathcal{B}_d(A), \mathcal{B}_d(b)\}
+	$$ $$
+	 \Leftrightarrow 
+		n - \mathcal{N}_d(A) - \mathcal{N}_d(B)
+		\leq n - \mathcal{N}_d(AB)
+		\leq n - \min\{\mathcal{N}_d(A), \mathcal{N}_d(B)\}
+	$$ 
+	Get rid of n and multiply $-1$ to the inequality and switch inequality signs.
+	$$
+	 \Leftrightarrow 
+	 	\min\{\mathcal{N}_d(A), \mathcal{N}_d(B)\}
+		\geq \mathcal{B}_d(AB)
+		\geq \mathcal{N}_d(A) + \mathcal{N}_d(B)
+	$$ $$
+	 \Leftrightarrow 
+	 	\mathcal{N}_d(A) + \mathcal{N}_d(B)
+		\leq \mathcal{B}_d(AB)
+		\leq \min\{\mathcal{N}_d(A), \mathcal{N}_d(B)\}
+	$$
+	\end{proof}
+
+	\item[Problem 2] Let $u,v\in\mathbb{R}^{n\times 1}$ be two column vectors such that $u^Tv\neq 1$. Let $\mathcal{I}$ be the $n\times n$ identity matrix. Compute a basis for the nullspace of $A = \mathcal{I} - uv^T$. Or if $\mathcal{N}(A) = 0$, prove that $A$ is invertible, and compute $A^{-1}$
+
+	\begin{proof}
+		Suppose $\mathcal{N}(A) \neq 0$, such that $\exists x \neq 0$, $Ax = 0$ \\
+		$$ 				Ax = 0 
+		\Leftrightarrow (\mathcal{I}-uv^T)x = 0 
+		\Leftrightarrow x = uv^Tx
+		\Leftrightarrow v^Tx = (u^Tv)^Tv^Tx$$
+		Assume $c = u^Tv \neq 1$
+		$$Ax = 0 \Leftrightarrow v^Tx = c v^Tx \Leftrightarrow x = 0$$
+		Contradict with our assumption that $x \neq 0$ \\
+		Thus $\mathcal{N}(A) = 0$, $A$ is invertable, with $A^{-1}$ being:
+		$$A^{-1} = I + \frac{1}{1-u^Tv}uv^T$$
+		\begin{equation}\begin{aligned}
+			AA^{-1} 
+			& = (I-uv^T)(I + \frac{1}{1-u^Tv}uv^T) \\
+			& = I + \frac{uv^T}{1-u^Tv} - uv^T - \frac{u(v^Tu)v^T}{1-uTv} \\
+			& = I + \frac{1 - (1-u^Tv) - (u^Tv)^T}{1-u^Tv}uv^T \\
+			& = I
+		\end{aligned}\end{equation}
+
+
+	\end{proof}		
+
+	\item[Problem 3] Let $A\in\mathbb{R}^{m\times n}$ be matrix with $rank(A) = r$.\\
+Prove in two different ways that there exist matrices $B\in\mathbb{R}^{m\times r},C\in\mathbb{R}^{r\times n}$, such that $A=BC$. You may only use arguments that we have developed in the class so far.\\
+Hint: For the first proof, try to write the linear transformation $\tau_A:\mathbb{R}^n\to\mathbb{R}^m$ as a composition of two linear transformations $\phi,\psi$ in the form
+$\tau_A:\mathbb{R}^n\xrightarrow{\phi}\mathbb{R}^r\xrightarrow{\psi}\mathbb{R}^m$. For the second proof, $B$ should contain in its columns the basis for some space (which space?).
+	\begin{proof}
+		Let's proof in two ways.\\
+		\textbf{Linear Transforms' view.}
+			Suppose we have $\psi\circ\phi$ and $\tau$ that both transfrom from $R^n$ to $R^m$\\
+			$\psi\circ\phi$ transforms to vector space $\mathcal{N}$, while $\tau$ $\mathcal{M}$, then we have:
+			$$ dim \mathcal{M} = dim \mathcal{N} = r$$
+			now we know that $\mathbb{R}^n\xrightarrow{\phi}\mathbb{R}^r\xrightarrow{\psi}\mathbb{R}^m$, it must follows that:
+			$$\mathbb{R}^n\xrightarrow{\phi}\mathbb{R}^r\xrightarrow{\psi}\mathbb{R}^m \subset \mathbb{R}^n\xrightarrow{\tau}\mathbb{R}^m$$
+			Thus $\mathcal{N} \subset \mathcal{M}$
+			combined with the fact that the dim are the same:
+			$$M = N$$
+			That's to say the corresponding matrix of $\psi$ and $\phi$, call them $B$, $C$ for convenience, is the decomposition of $A$, where $A = BC$ \\
+		\textbf{Matrix view}
+			Suppose B, C exists. Let's find out what B, C is.
+			$$A_{*j} = \sum_i B_{*i}C_{i,j}$$
+			That is to say, every column of A is a linear combination of columns of $B$, so \textbf{B is a basis of A}, then $C$ is just the representation of $A$ under the basis $B$
+	\end{proof}
+
+	\item[Problem 4] Let $\|\cdot\|:\mathbb{R}^{m\times n}\to\mathbb{R}$ be a matrix norm induced by the vector norm $\|\cdot\|$.Let $A$ be an invertible matrix. Prove that $\|A^{-1}\|=(min_{\|x\|=1}\|Ax\|)^{-1}$.
+	\begin{proof}
+		To proof this we better use the other definition of matrix norm:
+		$$|||A||| = \max_{x \neq 0} \frac{||Ax||}{||x||}$$
+		Then we have:
+		\begin{equation}\begin{aligned}
+			|||A^{-1}||| 
+			& = \max_{y \neq 0} \frac{||A^{-1}y||}{||y||} \\
+			& = \max_{x = A^{-1}y \neq 0} \frac{||x||}{||Ax||} \\
+			& = \max_{||x|| = 1} \frac{1}{||Ax||} \\
+			& = (\min_{||x|| = 1} ||Ax||) ^{-1} \\
+		\end{aligned}\end{equation}
+
+	\end{proof}
+
+	\item[Problem 5] There is something wrong with statement (5.2.13) p.283 in Meyer. What is it, and why is it wrong? How can you fix it?
+	\begin{proof}
+		$VV^T = I$ doesn't guarantee that $V^TV = I$, the condition about $U$, $V$ is wrong. It should be:
+		$$ V^TV = UU^T = I$$
+		Then we have:\\
+		$$ ||U^TAV||_2 = tr(U^TAVV^TA^TU) = tr(AA^T) = ||A||_2$$
+	\end{proof}
+
+	\item[Problem 6] Given a vector norm $\|\cdot\|:\mathbb{R}^{n}\to\mathbb{R}$ define the dual norm $\|\cdot\|^D:\mathbb{R}^{n}\to\mathbb{R}$ by $\|x\|^D = max_{\|y\|=1}|x^Ty|$. Show that the dual norm is a norm. show that $\|\cdot\|_2^D=\|\cdot\|_2,\|\cdot\|_1^D=\|\cdot\|_\infty,\|\cdot\|_\infty^D=\|\cdot\|_1$.
+	\begin{proof}\textbf{Proof of a Norm:}
+	
+	\textbf{Non-negative}
+		Since vector norm is non-negative, $||x||^D = \max_{||y||=1}|x^Ty|$, $||x||^D > 0$
+	\\ \textbf{Homogeneity}
+		$$\forall \alpha \in \mathbb{R}$$
+		$$||\alpha x||^D = \max_{||y||=1}|(\alpha x)^Ty| = \max_{||y||=1}\alpha|x^Ty| = \alpha||x||^D$$
+	\\ \textbf{Triangle Inequality}
+		\begin{equation}\begin{aligned}
+			||x+y||^D 
+			& = \max_{||v||=1}|(x+y)^Tv|  
+			  = \max_{||v||=1}|x^Tv + y^Tv|  \\
+			& \leq \max_{||v||=1}(|x^Tv| + |y^Tv|) 
+			  \leq \max_{||s||=1}|x^Ts| + \max_{||t = 1||}|y^Tt| \\
+			& = ||x||^D + ||y||^D
+		\end{aligned}\end{equation}
+	\end{proof}
+	\begin{proof}\textbf{Proof of 3 Properties:}
+	\textbf{2 = 2} \\ 
+		$$||x||^D_2 = \max_{||y||_2=1}|x^Ty|^2_2 = \max_{||y||=1} \sqrt{y^T(x^Tx)y} \max_{||y||=1} \sqrt{(x^Tx)(y^Ty)} = \sqrt{x^Tx} = ||x||_2$$
+	\\ \textbf{$\infty$ = 1}
+		$$ ||x||^D_\infty = \max_{|y|_\infty = 1} x^Ty $$
+		Thus $y_i = x_i / |x_i|$, 
+		$$||x||^D_\infty = \sum_i |x_i| = |x|_1$$
+	\\ \textbf{1 = $\infty$}
+		$$ ||x||^D_1 = \max_{|y|_1 = 1} |x^Ty|_1
+		$$
+		Thus $$i = arg \max_{j}{|x_j|} \Rightarrow y_i = x_i/|x_i|$$ $$y_{j\neq i} = 0$$
+		If not the case, $\exists j, |x_j| \leq |x_i|, |y_j| > 0$ and thus $|y_i| = 1 - |y_j| < 1$:
+		$$|x^Ty|_1 = |x_i||y_i| + |x_j||y_j| \leq |x_i||y_i| + |x_i||y_j| = |x_i|$$
+		When $y_i = x_i/|x_i|$, $y_{j \neq i} = 0$, 
+		$$ ||x||^D_1 = |x_i| = \max_{j}{|x_j|} = |x|_\infty$$
+	\end{proof}
+\end{description}
+
+\end{document}
+
