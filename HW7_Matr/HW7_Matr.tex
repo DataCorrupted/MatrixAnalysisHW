@@ -1,0 +1,44 @@
+ 
+\documentclass{article}
+
+\title{Matrix Analysis Homework 7}
+\author{Rong Yuyang \\ Student ID: 69850764 \\ rongyy@shanghaitech.edu.cn}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[colorlinks,linkcolor=red]{hyperref}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{subfloat}
+\newtheorem{prop}{Proposition}
+\usepackage{ulem}
+\usepackage{indentfirst}
+\begin{document}
+\maketitle
+
+\begin{description}
+	\item[Problem 1] (Problem Description)
+	.\\
+	\textbf{i) Dimension}
+		$$dim(\mathcal{W}) = s^2$$
+	\textbf{ii) Projection}
+		$$\forall W \in \mathcal{W}$$
+		$$W_P = P_UWP_V$$
+	\textbf{iii) Oth Proj}
+		$$W_O = W - W_P$$
+
+	\item[Problem 2] (Problem Description)
+	.\\
+	\textbf{i) U}
+	$$\forall \lambda \in \sigma(U), |\lambda| = 1$$
+	\begin{proof}
+		Suppose we have eigenpair $(\lambda, v)$:
+		$$ Uv = \lambda v$$
+		$$ v^*U^* = v^*\lambda^*$$
+		$$ v^*U^* Uv = v^*v = v^*\lambda^*\lambda v$$
+		$$ v^*v = \lambda^*\lambda v^*v$$
+		$$ \lambda^*\lambda = |\lambda| = 1$$
+	\end{proof}
+
+\end{description}
+
+\end{document}
