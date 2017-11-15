@@ -19,7 +19,28 @@
 	\item[Problem 1] (Problem Description)
 	.\\
 	\textbf{i) Dimension}
-		$$dim(\mathcal{W}) = s^2$$
+		$$dim(\mathcal{W}) = s(m+n-s)$$
+		\begin{proof}
+			let's take $\mathcal{W}$ apart:
+			$$\mathcal{W} = \mathcal{W}_U + \mathcal{W}_V$$
+			where we have:
+			$$ \mathcal{W}_U = \{u_ix^T | u_i \in U, x \in \mathbb{R}^n\}$$
+			$$ \mathcal{W}_V = \{yv_j^T | v_j \in V, y \in \mathbb{R}^m\}$$
+			we can extend basis of $U$, $V$ so that they span the whole $\mathbb{R}^m$, $\mathbb{R}^n$, respectively:
+			$$U' = U + \{u'_i\}; V' = V + \{v'_i\}$$
+			then we can write the basis of $ \mathcal{W}_U$, $\mathcal{W}_V$ as:
+			$$B_{\mathcal{W}_U} = \{u_iv_j^T\} + \{u_iv'_j^T\}$$
+			$$B_{\mathcal{W}_V} = \{u_iv_j^T\} + \{u'_iv_j^T\}$$
+			finally:
+			\begin{equation}\begin{aligned}
+				\dim(\mathcal{W}) 
+				& = \dim(\mathcal{W}_U + \mathcal{W}_V) \\
+				& = |B_{\mathcal{W}_U} + B_{\mathcal{W}_V}| \\
+				& = |\{u_iv_j^T\} + \{u_iv'_j^T\} + \{u'_iv_j^T\}| \\
+				& = s^2 + s(n-s) + s(m-s) \\
+				& = s(m+n-s)
+			\end{aligned}\end{equation} 
+		\end{proof}
 	\textbf{ii) Projection}
 		$$\forall W \in \mathcal{W}$$
 		$$W_P = P_UWP_V$$
@@ -40,7 +61,12 @@
 	\end{proof}
 	\textbf{ii) s}
 	\begin{proof}
-		$$P^2x = P\lambda x = \lambda^2 x$$
+		Take eigenpair: $\forall (\lambda, v)$
+		$$P^2v = P\lambda v = \lambda^2 v$$
+		$$ \lambda = 0, 1 \Rightarrow \sigma(\lambda) = {0, 1}$$
+		For eigenvalue 1, the corresponding eigenvectors form the basis of subspace $S$.\\
+		Then we have:
+		$$ \mu_a = k; \mu_g = n - k$$
 	\end{proof}
 
 \end{description}
