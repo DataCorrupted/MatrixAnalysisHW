@@ -18,10 +18,37 @@
 \begin{description}
 	\item[Problem 1] Let $\mathcal{U}$ be a subspace of $\mathbb{R}^{m}$ of dimension $s$, and let $U=[u_1,\dots,u_s]\in\mathbb{R}^{m\times s}$ be an orthonormal basis for $\mathcal{U}$. Then $P_{\mathcal{U}} = U U^\top$ is the orthogonal projection of $\mathbb{R}^{m}$ onto $\mathcal{U}$. Similarly, let $\mathcal{V}$ be a subspace of $\mathbb{R}^{n}$ of dimension $s$, and let $V=[v_1,\dots,v_s]$ be an orthonormal basis for $\mathcal{V}$. Now, let $\mathcal{W}$ be the subspace of $\mathbb{R}^{m\times n}$ spanned by all matrices of the form $u_i x^\top, y v_j^\top$, where $i,j=1,\dots,s$ and $x,y$ vary freely in $\mathbb{R}^{n}$, $\mathbb{R}^{m}$ respectively. i) What is the dimension of $\mathcal{W}$? ii) Find a formula for the orthogonal projection of $\mathbb{R}^{m\times n}$ onto $\mathcal{W}$ in terms of the orthogonal projections $P_U,P_V$ of $\mathbb{R}^{m}$ onto $\mathcal{U}$, and $\mathbb{R}^{n}$ onto $\mathcal{V}$ respectively. iii) Find a formula for the orthogonal projection onto $\mathcal{W}^\perp$ \\
 	\textbf{i) Dimension}
-		$$dim(\mathcal{W}) = s^2$$
+		$$dim(\mathcal{W}) = s(m+n-s)$$
+		\begin{proof}
+			let's take $\mathcal{W}$ apart:
+			$$\mathcal{W} = \mathcal{W}_U + \mathcal{W}_V$$
+			where we have:
+			$$ \mathcal{W}_U = \{u_ix^T | u_i \in U, x \in \mathbb{R}^n\}; \mathcal{W}_V = \{yv_j^T | v_j \in V, y \in \mathbb{R}^m\}$$
+			we can extend basis of $U$, $V$ so that they span the whole $\mathbb{R}^m$, $\mathbb{R}^n$, respectively:
+			$$U' = U + \{u'_i\}; V' = V + \{v'_i\}$$
+			then we can write the basis of $ \mathcal{W}_U$, $\mathcal{W}_V$ as:
+			$$B_{\mathcal{W}_U} = \{u_iv_j^T\} + \{u_iv'_j^T\}; B_{\mathcal{W}_V} = \{u_iv_j^T\} + \{u'_iv_j^T\}$$
+			$$$$
+			finally:
+			\begin{equation}\begin{aligned}
+				\dim(\mathcal{W}) 
+				& = \dim(\mathcal{W}_U + \mathcal{W}_V) \\
+				& = |B_{\mathcal{W}_U} + B_{\mathcal{W}_V}| 
+				 = |\{u_iv_j^T\} + \{u_iv'_j^T\} + \{u'_iv_j^T\}| \\
+				& = s^2 + s(n-s) + s(m-s) \\
+				& = s(m+n-s)
+			\end{aligned}\end{equation} 
+		\end{proof}
 	\textbf{ii) Projection}
-		$$\forall W \in \mathcal{W}$$
+		$$\forall W \in \mathbb{R}^n\times m$$
 		$$W_P = P_UWP_V$$
+		\begin{proof}
+			Let's take $W$ apart, col by col, $P_V$ col by col:
+			$$ W = [w_1, w_2, w_3 \cdots]; P_V = [p_1, p_2, p_3 \cdots] $$
+
+			$$ W_P = P_UWP_V = [P_Uw_1, P_Uw_2, P_Uw_3 \cdots]P_V = \sum P_Uw_ip_i^T $$
+			Now that $P_Uw_i \in \mathcal{U}$, we have $P_Uw_ip_i^T \in \mathcal{W}$ 
+		\end{proof}
 	\textbf{iii) Oth Proj}
 		$$W_O = W - W_P$$
 
@@ -38,7 +65,12 @@
 	\end{proof}
 	\textbf{ii) s}
 	\begin{proof}
-		$$P^2x = P\lambda x = \lambda^2 x$$
+		Take eigenpair: $\forall (\lambda, v)$
+		$$P^2v = P\lambda v = \lambda^2 v$$
+		$$ \lambda = 0, 1 \Rightarrow \sigma(\lambda) = {0, 1}$$
+		For eigenvalue 1, the corresponding eigenvectors form the basis of subspace $S$.\\
+		Then we have:
+		$$ \mu_a = k; \mu_g = n - k$$
 	\end{proof}
 
 \end{description}
