@@ -16,26 +16,81 @@
 \maketitle
 
 \begin{description}
-	\item[Problem 1] (Problem Description)
+	\item[Problem 1] Let $A$,$B$ be positive-semidefinite matrices. Show that all eigenvalues of $AB$ are non-negative. Is it true that $AB$ is positive-semidefinite? Justify your answer. 
 	\begin{proof}
-		
-		Cogratulations!
+		Say we have an eigen pair $(v, \lambda)$. \\
+		Case I, $\lambda = 0$, whatever $v$ is, we are good. \\
+		Case II, $\lambda \neq 0 \Rightarrow v \neq 0, Bv \neq 0$, then 
+			\begin{equation}\begin{aligned}
+							ABv = \lambda v 
+			\Rightarrow v^TBABv = \lambda v^TBv
+			\end{aligned}\end{equation}
+		Since $A$, $B$ are both positive semi-positive, we have $v^TBv \geq 0$, $v^TBABv \geq 0$. \\
+		However, $\lambda v^TBv = \lambda v^TC^TCv = \lambda ||Cv||_2$, \\since $C$ has l.i. columns, $Cv \neq 0 \Rightarrow \lambda v^TBv \neq 0$ \\
+		Thus: 
+			$$\lambda = \frac{v^TBABv}{v^TBv} \geq 0$$
+	\end{proof}
+
+	\item[Problem 2] Let $A$,$B$ be positive-semidefinite matrices. Show that $|||A - B|||_2 \leq max\{|||A|||_2,|||B|||_2\}$.
+	\begin{proof}
+		WLOG let's assume $||A||_2^2 \geq ||B||_2^2$, then:
+		\begin{equation}\begin{aligned}
+			 	|||A-B|||_2 
+		& =  	max \frac{x^T(A-B)x}{x^Tx}  \\
+		& \leq 	max\frac{x^TAx}{x^Tx} - max \frac{x^TBx}{x^Tx} \\
+		& \leq 	||A||_2 = max{||A||_2, ||B||_2}
+		\end{aligned}\end{equation}
+	\end{proof}
+
+	\item[Problem 3] Show that the set of all positive-semidefinite matrices of size $n \times n$ is a convex cone of $\mathbb{R}^{n\times n}$ (you need to read up the definition of "convex cone"). 
+
+	\begin{proof}
+		$\forall x \in \mathbb{R}^n$; $\alpha,\beta \geq 0$; $A$, $B$ being positive semidefinite.\\
+		Since $A$, $B$ is positive semidefinite, $\alpha \geq 0$, $\beta \geq 0$, we have:
+		$$ x^T(\alpha A + \beta B)x = \alpha x^TAx + \beta x^TBx \geq 0$$
+		Then we cansay that $\alpha A + \beta B$ is also positive semidefinite. \\
+		Thus the set of all positive semidefinite matrices of $n \times n$ is a convex cone.
+	\end{proof}
+
+
+	\item[Problem 4] Let $A \in \mathbb{R}^{n\times n}$  be positive-semidefinite. Let $B \in \mathbb{R}^{n \times k}$ be any matrix. Show that the matrix $B^\top A B$ is positive-semidefinite.
+	\begin{proof}
+		$$\forall v \in \mathbb{R}^k \Rightarrow Bv \in \mathbb{R}^n$$
+		Since $A$ is positive semi-definite: 
+		$$\forall x \in \mathbb{R}^n \Rightarrow x^TAx \geq 0$$ 
+		Then we have
+		$$v^T(B^TAB)v = (Bv)^TA(Bv) \geq 0$$
+		This justisfies that $B^TAB$ is also positive semi-definite.
+	\end{proof}
+
+	\item[Problem 5] Let $A \in \mathbb{R}^{n\times n}$  be positive-semidefinite. Show that for every distinct $i\neq j$ we have that $a_{ii} a_{jj} \ge a_{ij}^2$.
+	\begin{proof}
+		Since $A$ is positive semi-definite, we have:
+		$$ \exists B=[b_1, b_2, b_3 \cdots], A = B^TB $$
+		Then 
+		$$a_{ii}=b_i^Tb_i = ||b_i||^2$$
+		$$a_{jj}=b_j^Tb_j = ||b_j||^2$$
+		$$a_{ij}^2=(b_i^Tb_j)^2 = <b_i, b_j>^2$$
+		By Cauchy-Schwartz inequality immediately we have:
+		$$|<b_i, b_j>| \leq ||b_i||||b_j|| \Rightarrow <b_i, b_j>^2 \leq ||b_i||^2||b_j||^2$$
+		Thus we can conclude that:
+		$$ a_{ii}a_{jj} \geq a_{ij}^2 $$
+	\end{proof}
+
+	\item[Problem 6] Let $A \in \mathbb{R}^{n\times n}$  be symmetric, strictly diagonally dominant, and suppose that $a_{ii} >0$. Prove that A is positive-definite.
+	\begin{proof}
+		According to Gershgorin Disk Theorem:
+		$$\sigma(A) \subset \{z \in \mathbb{C} | |z - a_{ii}| \leq \sum_{i\neq j} |a_{ij}|\}$$
+		Now we have A being strictly diagonally dominant, we have:
+		$$ |a_{ii}| > \sum_{i\neq j} |a_{ij}|$$
+		and $$a_{ii} > 0$$
+		Then we can say that 
+		$$\sigma(A) \subset \{z \in \mathbb{C} | |z - a_{ii}| \leq \sum_{i\neq j} |a_{ij}|\} \subset \mathbb{R}^+$$
+		$$ \forall \lambda \in \sigma(A), \lambda > 0$$
+		Since each and every eigenvalue is greater than zero, $A$ is symmetric, we have a positive definite matrix $A$.
 
 	\end{proof}
 
-	\item[Problem 2] (Problem Description)
-	\begin{proof}
-	
-		Initialization Finished Successfully
-
-	\end{proof}
-
-	\item[Problem 3] (Problem Description)
-	\begin{proof}
-
-		Here goes your anwser.
-
-	\end{proof}
 \end{description}
 
 \end{document}
