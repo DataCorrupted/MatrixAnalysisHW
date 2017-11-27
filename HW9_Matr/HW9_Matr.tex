@@ -12,6 +12,8 @@
 \newtheorem{prop}{Proposition}
 \usepackage{ulem}
 \usepackage{indentfirst}
+\usepackage[a4paper,includeheadfoot,margin=2.54cm]{geometry}
+
 \begin{document}
 \maketitle
 
@@ -36,18 +38,50 @@
 			& = \min_{\dim(V) = n-k+1} \max_{||x||_2 =1} x^TAX  \\
 			& \geq \min_{\dim(V) = n-k+1} \max_{||x||_2 = 1, x \perp \{e_{1}, \cdots e_{i}\}} x^TAx \\
 			& = \min_{\dim(V\cap\{e_{1}, \cdots e_{i}\}) = n-k+1} \max_{||x||_2 = 1} x^TB'x \\
+			& (wlog) = \min_{V'} \max_{x = \begin{bmatrix}0 \\ z\end{bmatrix}} \begin{bmatrix}0 \\ z\end{bmatrix}\begin{bmatrix} &  \\  & B\end{bmatrix}\begin{bmatrix}0 & z\end{bmatrix}
+			= \min \max_{||z||_2 = 1} z^TBz \\
 			& = \lambda_k(B)
-
-
 		\end{aligned}\end{equation}
 	\end{proof}
 
 	\item[Problem 3] (Problem Description)
 	\begin{proof}
-
-		Here goes your anwser.
+		Given $U$, extend it to $V = \begin{bmatrix}U & Q\end{bmatrix} \Rightarrow V^TV = I_n$. \\
+		Thus $V^TAV$ is similar to $A \Rightarrow \lambda_k(A) = \lambda_k(V^TAV)$
+		\begin{equation}
+			V^TAV = \begin{bmatrix}Q & U_{k\times k}\end{bmatrix}^TA\begin{bmatrix}Q & U\end{bmatrix} = \begin{bmatrix} & \\ & U^TAU\end{bmatrix}
+		\end{equation}
+		By interlacing II we have:
+		\begin{equation}\begin{aligned}
+			& \lambda_i (U^TAU) \geq \lambda_n+i-k(V^TAV) = \lambda_{n-k+i}(A) \\
+			& \Leftrightarrow tr(U^TAU) = \sum_{i = 1}^k \lambda_i(U^AU) \leq \sum_{i}\sigma_{i}(A)
+		\end{aligned}\end{equation}
+		Last, the equal condition: 
+		\par With $(u_i, \lambda_i(A))$ being eigenpairs where $\lambda_1 > \lambda_2 > \cdots$.
+		When $U = \begin{bmatrix}u_1 & u_2 & \cdots & u_k\end{bmatrix}$
 
 	\end{proof}
+	\item[Problem 4] (Problem Description)
+	\begin{proof}
+		(Just a example of Interlacing II)
+		$$\forall i, B_{1 \times 1} = \begin{bmatrix}A_{ii}\end{bmatrix} \Rightarrow \lambda_1(B) = A_{ii}$$
+		Now consider interlancing II:
+		\begin{equation}\begin{aligned}
+			& \lambda_{n+1-1}(A) \leq \lambda_1(B) \leq \lambda_{1}(A) \\
+			& \Leftrightarrow \lambda_n(A) \leq A_{ii} \leq \lambda_{1}(A)
+		\end{aligned}\end{equation}
+		\end{proof}
+	\item[Problem 5] (Problem Description)
+	\begin{proof}
+		\begin{equation}\begin{aligned}
+			    \sum_{i = 1}^k\lambda_i(A+B) 
+			& =	\max_{\forall U_{k \times k}} tr(U^T(A+B)U) = \max_{\forall U_{k \times k}} tr(U^TAU+U^TBU) \\ 
+			& = \max_{\forall U_{k \times k}} tr(U^TAU)+tr(U^TBU) \\
+			& \leq \max_{\forall U_{k \times k}} tr(U^TAU)+\max_{\forall U_{k \times k}} tr(U^TBU) \\
+			& = \sum_{i = 1}^k\lambda_i(A) + \sum_{i = 1}^k\lambda_i(B) 
+		\end{aligned}\end{equation}
+	\end{proof}
+
 \end{description}
 
 \end{document}
