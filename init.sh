@@ -52,6 +52,8 @@ echo "
 \newtheorem{prop}{Proposition}
 \usepackage{ulem}
 \usepackage{indentfirst}
+\usepackage[a4paper,includeheadfoot,margin=2.54cm]{geometry}
+
 \begin{document}
 \maketitle
 
