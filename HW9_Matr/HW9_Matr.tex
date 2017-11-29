@@ -37,9 +37,9 @@
 			\lambda_k(A)
 			& = \min_{\dim(V) = n-k+1} \max_{||x||_2 =1} x^TAX  \\
 			& \geq \min_{\dim(V) = n-k+1} \max_{||x||_2 = 1, x \perp \{e_{1}, \cdots e_{i}\}} x^TAx \\
-			& = \min_{\dim(V\cap\{e_{1}, \cdots e_{i}\}) = n-k+1} \max_{||x||_2 = 1} x^TB'x \\
+			& = \min_{\dim(V\cap<e_{1}, \cdots e_{i}>^\perp) = n-k+1} \max_{||x||_2 = 1} x^TB'x \\
 			& (wlog) = \min_{V'} \max_{x = \begin{bmatrix}0 \\ z\end{bmatrix}} \begin{bmatrix}0 \\ z\end{bmatrix}\begin{bmatrix} &  \\  & B\end{bmatrix}\begin{bmatrix}0 & z\end{bmatrix}
-			= \min \max_{||z||_2 = 1} z^TBz \\
+			= \min \max_{||z||_2 = 1, z\in V''} z^TBz \\
 			& = \lambda_k(B)
 		\end{aligned}\end{equation}
 	\end{proof}
